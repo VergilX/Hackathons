@@ -6,7 +6,7 @@ Databases required
 	b. Skillsets
 	c. CV info 
 	d. Certificates
-	e. Groups
+	e. Groups (Many to many)
 	f. References
 	g. Refererred people + Skills vouched for
 	h. Projects
@@ -24,7 +24,8 @@ Databases required
 	b. Group members
 	c. Projects
 	d. Contact details
-	
+	e. Group ID
+
 4. Projects
 	a. Group + Group memebers
 	b. Name
