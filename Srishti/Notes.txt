@@ -1,0 +1,53 @@
+Databases required
+-------------------
+
+1. People / User
+	a. Username and Password
+	b. Skillsets
+	c. CV info 
+	d. Certificates
+	e. Groups
+	f. References
+	g. Refererred people + Skills vouched for
+	h. Projects
+	i. Calendar Events
+	j. To do list items + Personal notes
+	k. Recent projects
+	l. Workplace reviews
+	
+2. CV info
+	a. Username
+	b. All info
+	
+3. Groups
+	a. Group Name
+	b. Group members
+	c. Projects
+	d. Contact details
+	
+4. Projects
+	a. Group + Group memebers
+	b. Name
+	c. Description
+	d. Tools used
+	e. Notes for each member
+	f. Team goals
+	g. Deadlines
+	 
+5. Workplaces
+	a. Image links
+	b. Rating
+	c. Google map location link
+	d. Reviews
+	e. Group members' preference
+	
+6. Skillsets
+	a. Names
+	b. Relevence
+	
+7. Calendar
+	a. Events
+	b. Deadlines
+	c. Upcoming events
+	
+8. Events (least priority)
