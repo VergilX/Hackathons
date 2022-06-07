@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+# Note: Commented things are stuff I don't understand
+
 # Create your models here.
 # Class required: for managing users
 class MyUserManager(BaseUserManager):
@@ -35,8 +37,22 @@ class MyUserManager(BaseUserManager):
         user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
-        user.save(usingi=self._db)
+        user.save(using=self._db)
         return user
+
+"""
+def get_profile_image_filepath(self):
+    ''' The profile images will be saved in the below path 
+    
+    All uploaded images will be stored with name 'profile_image.png' '''
+
+    return f'profile_images/{self.pk}/{"profile_image.png"}'
+
+def get_default_profile_image():
+
+    # return the default image file path
+    return 
+"""
 
 # Class for custom user
 class User(AbstractBaseUser):
@@ -51,15 +67,20 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     # add custom fields
+    # profile_image = models.ImageField(max_length=255, upload_to=, null=True, blank=True, default=)
+    hide_email = models.BooleanField(default=True)
 
+    # these must match the variables used in definition
     USERNAME_FIELD = "username" # The base field which is needed to create user
-    REQUIRED_FIELD = ["email", ] # Custom required fields
+    REQUIRED_FIELDS = ["email", ] # Custom required fields
 
     # Telling it how to use the manager
     objects = MyUserManager()
 
     def __str__(self):
-        return f"Username: {self.username}; Email: {self.email}"
+        """ A default thing that appears when no field is accessed """
+
+        return f"Username: {self.username}"
 
     # default functions required by django to create user
     def has_perm(self, perm, obj=None):
@@ -69,3 +90,14 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         """ All users have module permissions """
         return True
+
+"""
+    # other functions
+    def get_profile_image_filename(self):
+        ''' This function extracts the filename of the uploaded profile picture 
+        
+        Check out the path in get_profile_image_filepath function '''
+
+        # This is basically substringing. Look carefully
+        return str(self.profile_image)[str(self.profile_image).index(f'profile_images/{self.pk}/'):]
+"""
