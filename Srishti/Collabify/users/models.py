@@ -1,9 +1,45 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Note: Commented things are stuff I don't understand
 
 # Create your models here.
+class Language(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Language: {self.name}"
+
+class Certificate(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"Certificate: {self.name}"
+
+class Skill(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Skill: {self.name}"
+
+class Club(models.Model):
+    name = models.CharField(max_length=30)
+    members = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Club {self.name}"
+
+class Referee(models.Model):
+    name = models.CharField(max_length=60)
+    position = models.CharField(max_length=10)
+    job = models.CharField(max_length=30)
+    phone = PhoneNumberField(blank=True, null=True, unique=True)
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Referee: {self.name}"
+
 # Class required: for managing users
 class MyUserManager(BaseUserManager):
 
@@ -70,6 +106,16 @@ class User(AbstractBaseUser):
     # profile_image = models.ImageField(max_length=255, upload_to=, null=True, blank=True, default=)
     hide_email = models.BooleanField(default=True)
 
+    # personal fields
+    certificates = models.ManyToManyField(Certificate, related_name="users")
+    skills = models.ManyToManyField(Skill, related_name="users")
+    address = models.CharField(max_length=100, default="")
+    phone = PhoneNumberField(blank=True, null=True, unique=True)
+    lang = models.ManyToManyField(Language, related_name="users")
+    clubs = models.ManyToManyField(Club, related_name="memebers")
+    summary = models.CharField(max_length=100, default="")
+    references = models.ManyToManyField(Referee, related_name="candidates")
+
     # these must match the variables used in definition
     USERNAME_FIELD = "username" # The base field which is needed to create user
     REQUIRED_FIELDS = ["email", ] # Custom required fields
@@ -101,3 +147,44 @@ class User(AbstractBaseUser):
         # This is basically substringing. Look carefully
         return str(self.profile_image)[str(self.profile_image).index(f'profile_images/{self.pk}/'):]
 """
+class Education(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student")
+    qualification = models.CharField(max_length=5)
+    institution = models.CharField(max_length=30)
+    description = models.CharField(max_length=100, default="")
+    start_year = models.IntegerField(blank=False, null=False)
+    end_year = models.IntegerField(blank=False, null=False)
+
+    def __str__(self):
+        return f"Education of {self.user}"
+
+    def main(self):
+        """ Returns main components in form: "<Degree>, <institution> """
+
+        return f"{self.qualification}, {self.institution}"
+
+    def returnperiod(self):
+        """ Returns education period in format yyyy-yy """
+
+        return f"{self.start_year}-{self.end_year % 100}"
+
+class WorkExperience(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="employee")
+    job = models.CharField(max_length=30)
+    company = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)
+    start_year = models.IntegerField(blank=False, null=False)
+    end_year = models.IntegerField(blank=False, null=False)
+
+    def __str__(self):
+        return f"Work Experience of {self.user}"
+
+    def main(self):
+        """ Returns main components in form: "<Degree>, <institution> """
+
+        return f"{self.job}, {self.company}"
+
+    def returnperiod(self):
+        """ Returns education period in format yyyy-yy """
+
+        return f"{self.start_year}-{self.end_year % 100}"

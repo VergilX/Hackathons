@@ -50,5 +50,6 @@ Databases required
 	a. Events
 	b. Deadlines
 	c. Upcoming events
+	d. User / Group
 	
 8. Events (least priority)

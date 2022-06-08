@@ -1,12 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "Website/layout.html" %}
+{% load static %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collabify</title>
+    <link rel="stylesheet" href="{% static 'css/Website/home.css' %}">
+    <link rel="stylesheet" href="">
 </head>
-<body>
-    If this doesn't work, you're dumb! :]
-</body>
-</html>
+
+{% block body %}
+    <section id="hero">
+        <div class="middle">
+            <div class="heading">
+                <img src="" alt="">
+            </div>
+            <div class="desc">
+                <span>The all-in-one collaborator for all your projects</span>
+            </div>
+        </div>
+    </section>    
+    
+    <section id="features">
+        <h3>Collaboration made simple</h3>
+        <div class="circle">
+            <h4>EFFICIENCY</h4>
+            <div class="desc">
+                <span>With a calendar and the deadline alerting system, you are guarenteed to finish your projects at the earliest.</span>
+            </div>
+        </div>
+        <div class="circle">
+            <h4>EASE OF USE</h4>
+            <div class="desc">
+                <span>The UI is created in a specific way which garners user-friendly service to its users</span>
+            </div>
+        </div>
+        <div class="circle">
+            <h4>INNOVATIVE</h4>
+            <div class="desc">
+                <span>Collabify is not your basic app that helps in collaboration. With suggesting locations to rank-based point system, there's a lot in store for you</span>
+            </div>
+        </div>
+        <div class="circle">
+            <h4>ORGANIZED</h4>
+            <div class="desc">
+                <span>It can get confusing when there are a lot of projects to do and people to contact. At hard times like these, collabify is your lifeline.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>CONTACT US</h2>
+        <div class="address">
+            <div class="head">
+                <span>ADDRESS</span>
+            </div>
+            <div class="content">
+                SOE CUSAT,
+                Kalamaswsery
+                Ernakulam
+                Kerala
+            </div>
+        </div>
+        <div class="contact">
+            <div class="head">
+                <span>CONTACT</span>
+            </div>
+            <div class="content">
+                <span>Mob: 8129283948</span>
+                <span>Landline: 0484-2839374</span>
+            </div>
+        </div>
+        <div class="email">
+            <div class="head">
+                <span>EMAIL</span>
+            </div>
+            <div class="content">
+                <a href="mailto: ">elonmuskisawsm@gmail.com</a>
+            </div>
+        </div>
+    </section>
+    <section id="social">
+        <div class="icons">
+            <div class="icon">
+                <a href="">
+                    <span class="link"></span>
+                </a>
+                <div class="pic">
+                    <img src="" alt="">
+                </div>
+                <div class="desc">
+                    <span>WhatsApp</span>
+                </div>
+            </div>
+            <div class="icon">
+                <a href="">
+                    <span class="link"></span>
+                </a>
+                <div class="pic">
+                    <img src="" alt="">
+                </div>
+                <div class="desc">
+                    <span>Facebook</span>
+                </div>
+            </div>
+            <div class="icon">
+                <a href="">
+                    <span class="link"></span>
+                </a>
+                <div class="pic">
+                    <img src="" alt="">
+                </div>
+                <div class="desc">
+                    <span>Instagram</span>
+                </div>
+            </div>
+            <div class="icon">
+                <a href="">
+                    <span class="link"></span>
+                </a>
+                <div class="pic">
+                    <img src="" alt="">
+                </div>
+                <div class="desc">
+                    <span>Twitter</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
