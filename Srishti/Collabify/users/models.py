@@ -1,10 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from phonenumber_field.modelfields import PhoneNumberField
+from django.forms import IntegerField
 
 # Note: Commented things are stuff I don't understand
 
 # Create your models here.
+class Hashtag(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return f"Hastag: #{self.name}"
+
+    def hashtag(self):
+        """ Returns hashtag in #{name} format """
+        return f"#{self.name}"
+
+class Project(models.Model):
+    name = models.CharField(max_length=30, blank=False, null=False)
+    desc = models.CharField(max_length=250)
+    tools = models.CharField(max_length=250)
+    hastags = models.ManyToManyField(Hashtag, related_name="projects")
+    personal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Project: {self.name}"
+
 class Language(models.Model):
     name = models.CharField(max_length=20)
 
@@ -25,16 +45,16 @@ class Skill(models.Model):
 
 class Club(models.Model):
     name = models.CharField(max_length=30)
-    members = models.IntegerField(blank=True, null=True)
+    no_of_members = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"Club {self.name}"
+        return f"{self.name} club"
 
 class Referee(models.Model):
     name = models.CharField(max_length=60)
     position = models.CharField(max_length=10)
     job = models.CharField(max_length=30)
-    phone = PhoneNumberField(blank=True, null=True, unique=True)
+    phone = models.IntegerField(blank=True, null=True)
     description = models.CharField(max_length=100)
 
     def __str__(self):
@@ -93,6 +113,7 @@ def get_default_profile_image():
 # Class for custom user
 class User(AbstractBaseUser):
     # Required by django for making a custom user
+    name = models.CharField(max_length=40, default="")
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
@@ -110,11 +131,12 @@ class User(AbstractBaseUser):
     certificates = models.ManyToManyField(Certificate, related_name="users")
     skills = models.ManyToManyField(Skill, related_name="users")
     address = models.CharField(max_length=100, default="")
-    phone = PhoneNumberField(blank=True, null=True, unique=True)
+    phone = models.IntegerField(blank=True, null=True)
     lang = models.ManyToManyField(Language, related_name="users")
-    clubs = models.ManyToManyField(Club, related_name="memebers")
-    summary = models.CharField(max_length=100, default="")
+    clubs = models.ManyToManyField(Club, related_name="members")
+    summary = models.CharField(max_length=250, default="")
     references = models.ManyToManyField(Referee, related_name="candidates")
+    projects = models.ManyToManyField(Project, related_name="projectees")
 
     # these must match the variables used in definition
     USERNAME_FIELD = "username" # The base field which is needed to create user
@@ -147,8 +169,16 @@ class User(AbstractBaseUser):
         # This is basically substringing. Look carefully
         return str(self.profile_image)[str(self.profile_image).index(f'profile_images/{self.pk}/'):]
 """
+class Group(models.Model):
+    name = models.CharField(max_length=30)
+    members = models.ManyToManyField(User, related_name="groups")
+    projects = models.ManyToManyField(Project, related_name="group")
+
+    def __str__(self):
+        return f"Group: {self.name}"
+
 class Education(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="education")
     qualification = models.CharField(max_length=5)
     institution = models.CharField(max_length=30)
     description = models.CharField(max_length=100, default="")
@@ -169,7 +199,7 @@ class Education(models.Model):
         return f"{self.start_year}-{self.end_year % 100}"
 
 class WorkExperience(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="employee")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="work")
     job = models.CharField(max_length=30)
     company = models.CharField(max_length=20)
     description = models.CharField(max_length=100)

@@ -15,6 +15,7 @@ def register(request):
         users = User.objects.all()
         if username not in [i.username for i in users]:
             # rest of the data
+            name = data.get("name")
             password = data.get("password")
             # Confirm password == password will be checked using Js
             phone = data.get("phone")
@@ -26,13 +27,16 @@ def register(request):
                         username=username,
                         password=password)
 
-            # adding phone
+            # adding phone and name
+            user.name = name
             user.phone = phone
 
             user.save()
             login(request, user)
             return HttpResponseRedirect(reverse("Website:user"))
-        return render(request, "Website/home.html")
+        return render(request, "Website/home.html", {
+            "registererror": "username already taken",
+        })
     return HttpResponseRedirect(reverse("Website:home"))
 
 def login_home(request):
@@ -47,15 +51,14 @@ def login_home(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("Website:user"))
-        print("incorrect")
         return render(request, "Website/home.html", { # change this with js
-            "msg": "Incorrect credentials",
+            "loginerror": "Incorrect credentials",
         })
 
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("Website:home"))
     # If the request made is not POST and not already logged in
-    return render(request, "Website/home.html")
+    return HttpResponseRedirect(reverse("Website:user"))
 
 def logout_home(request):
     if request.user.is_authenticated:

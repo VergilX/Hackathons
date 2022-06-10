@@ -1,5 +1,119 @@
 {% extends 'Website/layout.html' %}
+{% load static %}
+
+<head>
+    <title>
+        <link rel="stylesheet" href="{% static 'css/website/user.css' %}">
+    </title>
+</head>
 
 {% block body %}
-    
+    <section id="hero">
+        <div class="profile">
+            <div class="left">
+                <div id="edit">
+                    <a href="{% url 'Website:edit' %}">Edit</a>
+                </div>
+                <div class="profilepic">
+                    <img src="" alt="Profile">
+                    <span>{{ user.name }}</span>
+                </div>
+                <div class="personaldetails">
+                    <span>Name</span>
+                    <span>{{ user.name }}</span>
+                    <span>Email</span>
+                    <span>{{ user.email }}</span>
+                    <span>Mailing address</span>
+                    <span>{{ user.address }}</span>
+                    <span>Phone Number</span>
+                    <span>{{ user.phone }}</span>
+                    <span>Languages known</span>
+                    <div class="lang">
+                        <ul>
+                            {% for lang in languages %}
+                                <li>{{ lang }}</li>
+                            {% empty %}
+                                <li>No language</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <span>Clubs</span>
+                    <div class="clubs">
+                        <ul>
+                            {% for club in clubs %}
+                                <li>{{ club }}</li>
+                            {% empty %}
+                                <li>No club</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="skills">
+                    <h3>Skills</h3>
+                    <ul>
+                        {% for skill in skills %}
+                            <li>{{ skill }}</li>
+                        {% empty %}
+                            <li>Oops! Looks like you don't know much. Just get better!</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <span><a href="">Click here</a> to view all certificates</span>
+            </div>
+            <div class="right">
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <p>{{ summary }}</p>
+                </div>
+                <div class="workexp">
+                    <h3>Work Experience</h3>
+                    <ol>
+                        {% for post, company, year, description in details %}
+                            <li>
+                                <div class="info">
+                                    <span>{{ post }}, {{ company }} ({{ year }})</span>
+                                    <p>{{ description }}</p>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <span>No work experience</span>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="education">
+                    <h3>Education</h3>
+                    <ol>
+                        {% for degree, institute, year, description in educationdetails %}
+                            <li>
+                                <div class="info">
+                                    <span>{{ degree }}, {{ institute }} ({{ year }})</span>
+                                    <p>{{ description }}</p>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <span>No Education lol</span>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="references">
+                    <h3>References</h3>
+                    <ol>
+                        {% for referee in reference %}
+                            <li>
+                                <div class="info">
+                                    <span>{{ referee.name }}, {{ referee.position }}, {{ referee.job }}   (Ph: {{ referee.phone }})</span>
+                                    <p>{{ referee.description }}</p>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <span>No references</span>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="groups">
+        <!-- {% for group in groups } -->
+    </section>
 {% endblock %}

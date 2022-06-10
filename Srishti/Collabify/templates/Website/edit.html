@@ -1,0 +1,99 @@
+{% extends 'Website/layout.html' %}
+
+{% block body %}
+    <section id="hero">
+        <form action="{% url 'Website:edit' %}" method="post">
+            {% csrf_token %}
+            <div class="profile">
+                <div class="left">
+                    <div id="edit">
+                        <a href="{% url 'Website:user' %}">Home</a>
+                    </div>
+                    <div class="profilepic">
+                        <img src="" alt="Profile">
+                        <span>{{ user.name }}</span>
+                    </div>
+                    <div class="personaldetails">
+                        <label for="name">Name</label>
+                        <input type="text" placeholder="Name" name="name" value="{{ user.name }}">
+                        <label for="email">Email</label>
+                        <input type="text" placeholder="Email ID" name="email" value="{{ user.email }}">
+                        <label for="address">Mailing address</label>
+                        <input type="text" placeholder="Address" name="address" value="{{ user.address }}">
+                        <label for="phone">Phone Number</label>
+                        <input type="number" placeholder="Phone number" name="phone" value="{{ user.phone }}">
+                        <span>Languages known</span>
+                        <div class="lang">
+                            <select name="languages" id="" multiple>
+                                {% for lang in languages %}
+                                    <option value="{{ lang }}">{{ lang.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <span>Press control to select multiple options</span>
+                        </div>
+                        <span>Clubs</span>
+                        <div class="clubs">
+                            <select name="clubs" id="" multiple>
+                                {% for club in clubs %}
+                                    <option value="{{ club }}">{{ club.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <span>Press control to select multiple options</span>
+                        </div>
+                    </div>
+                    <div class="skills">
+                        <h3>Skills</h3>
+                        <select name="skills" id="" multiple>
+                            {% for skill in skills %}
+                                <option value="{{ skill }}">{{ skill.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <span>Press control to select multiple options</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="summary">
+                        <h3>Summary</h3>
+                        <input type="text" placeholder="Enter text" name="summary" value="{{ user.summary }}">
+                    </div>
+                    <div class="workexp">
+                        <h3>Work Experience</h3>
+                        <label for="job">Job:</label>
+                        <input type="text" name="job">
+                        <label for="company">Company:</label>
+                        <input type="text" name="company">
+                        <label for="desc">Description:</label>
+                        <input type="text" name="desc">
+                        <label for="start">Starting year:</label>
+                        <input type="number" name="start">
+                        <label for="end">Ending year:</label>
+                        <input type="number" name="end">
+                    </div>
+                    <div class="education">
+                        <h3>Education</h3>
+                        <label for="qualification">Qualification:</label>
+                        <input type="text" name="qualification">
+                        <label for="institution">Institution:</label>
+                        <input type="text" name="institiution">
+                        <label for="description">Description</label>
+                        <input type="text" name="description">
+                        <label for="estart">Starting year:</label>
+                        <input type="number" name="estart">
+                        <label for="eend">Ending year:</label>
+                        <input type="number" name="eend">
+                    </div>
+                    <div class="references">
+                        <h3>References</h3>
+                        <select name="references" id="" multiple>
+                            {% for referee in referees %}
+                                <option value="{{ referee }}">{{ referee.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <span>Press control to select multiple options</span>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Confirm Changes">
+        </form>
+    </section>
+{% endblock %}

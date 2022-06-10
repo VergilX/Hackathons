@@ -1,0 +1,62 @@
+{% extends 'Website/layout.html' %}
+
+{% block body %}
+    <section class="hero">
+        <div class="options">
+            <div class="option">
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </div>
+            <div class="option">
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </div>
+            <div class="option">
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </div>
+            <div class="option">
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="recent">
+            <div class="margin"></div>
+            <div class="items">
+                <ul>
+                    {% for recent in recents %}
+                        <li><a href="">{{ recent }}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="groups">
+            {% for group in groups %}
+                <div class="group">
+                    <div class="icon">
+                        <img src="" alt="">
+                    </div>
+                    <div class="desc">
+                        <span>{{ group }}</span>
+                    </div>
+                </div>
+            {% empty %}
+                <span>No groups</span>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="body">
+        <div class="personalprojects">
+            <h2>PERSONAL PROJECTS</h2>
+            <div class="list">
+                <div class="items">
+                    <ul>
+                        <li><a href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>

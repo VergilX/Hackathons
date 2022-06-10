@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/website/layout.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
 </head>
 <body>
     <nav>
@@ -16,37 +17,71 @@
         {% if not request.user.is_authenticated %}
             <div class="buttons">
                 <ul>
-                    <li><a href="{% url 'users:login' %}">Login</a></li>
-                    <li><a href="{% url 'users:register' %}">Register</a></li>
+                    <li id="login">Login</li>
+                    <li id="register">Register</li>
                 </ul>
             </div>
-            <div class="login">
-                <form action="{% url 'users:login' %}" method="post">
-                    {% csrf_token %}
-                    <input type="text" placeholder="Username" name="username" class="input">
-                    <input type="password" placeholder="password" name="password" class="input">
-                    <input type="submit" value="Login" class="button">
-                </form>
-                <a href="">Already have an account?</a>
-            </div>
-            <div class="register">
-                <form action="{% url 'users:register' %}" method="post">
-                    {% csrf_token %}
-                    <input type="text" placeholder="Full Name" name="name" class="input">
-                    <input type="text" placeholder="Username" name="username" class="input">
-                    <input type="tel" placeholder="Phone Number" name="phone" class="input">
-                    <input type="email" placeholder="Email ID" name="email" class="input">
-                    <input type="password" placeholder="Password" name="password" class="input">
-                    <input type="password" placeholder="Confirm Password" class="input">
-                    <input type="submit" value="Register" class="button">
-                </form>
-                <a href="">Don't have an account?</a>
-            </div>
+            {% if loginerror %}
+                <div class="login" style="display: block;">
+                    <form action="{% url 'users:login' %}" method="post">
+                        {% csrf_token %}
+                        <img src="" alt="exit" id="exitlogin">
+                        <input type="text" placeholder="Username" name="username" class="input">
+                        <input type="password" placeholder="Password" name="password" class="input">
+                        <input type="submit" value="Login">
+                    </form>
+                    <a href="">Already have an account?</a>
+                    <span>{{ loginerror }}</span>
+                </div>
+            {% else %}
+                <div class="login" style="display: none;">
+                    <form action="{% url 'users:login' %}" method="post">
+                        {% csrf_token %}
+                        <img src="" alt="exit" id="exitlogin">
+                        <input type="text" placeholder="Username" name="username" class="input">
+                        <input type="password" placeholder="Password" name="password" class="input">
+                        <input type="submit" value="Login">
+                    </form>
+                    <a href="">Already have an account?</a>
+                </div>
+            {% endif %}
+            {% if registererror %}
+                <div class="register" style="display: block;">
+                    <form action="{% url 'users:register' %}" method="post" id="registerform">
+                        {% csrf_token %}
+                        <img src="" alt="exit" id="exitregister">
+                        <input type="text" placeholder="Full Name" name="name" class="input">
+                        <input type="text" placeholder="Username" name="username" class="input">
+                        <input type="tel" placeholder="Phone Number" name="phone" class="input">
+                        <input type="email" placeholder="Email ID" name="email" class="input">
+                        <input type="password" placeholder="Password" name="password" class="input" id="pass">
+                        <input type="password" placeholder="Confirm Password" class="input" id="cpass">
+                        <input type="submit" value="Register">
+                    </form>
+                    <a href="">Don't have an account?</a>
+                    <span>Mistake in input information</span>
+                </div>
+            {% else %}
+                <div class="register" style="display: none;">
+                    <form action="{% url 'users:register' %}" method="post" id="registerform">
+                        {% csrf_token %}
+                        <img src="" alt="exit" id="exitregister">
+                        <input type="text" placeholder="Full Name" name="name" class="input">
+                        <input type="text" placeholder="Username" name="username" class="input">
+                        <input type="tel" placeholder="Phone Number" name="phone" class="input">
+                        <input type="email" placeholder="Email ID" name="email" class="input">
+                        <input type="password" placeholder="Password" name="password" class="input" id="pass">
+                        <input type="password" placeholder="Confirm Password" class="input" id="cpass">
+                        <input type="submit" value="Register">
+                    </form>
+                    <a href="">Don't have an account?</a>
+                </div>
+            {% endif %}
         {% else %}
             <div class="navigate">
                 <ul>
                     {% for link,item in items %}
-                        <li><a href="{{ link }}">{{ item }}</a></li>
+                        <li><a href="{% url 'Website:project' %}">{{ item }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
