@@ -1,0 +1,13 @@
+Things to learn and do:
+1. Real time info display
+2. Matplotlib to display graph on site
+3. Bootstrap / CSS for proper alignment
+4. Connect arduino with Website (Data transmitting and receiving)
+5. Try to use API for real time details(like AJAX)
+
+Link for google doc ideation: 
+
+Django channels: https://www.youtube.com/watch?v=cw8-KFVXpTE
+https://www.youtube.com/watch?v=F4nwRQPXD8w
+
+
