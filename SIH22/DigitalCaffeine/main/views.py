@@ -6,3 +6,6 @@ def index(request):
 
 def main(request):
     return render(request, "main/data.html")
+
+def stats(request):
+    return render(request, "main/stats.html")
