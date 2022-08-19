@@ -12,7 +12,7 @@ def home(request):
         return render(request, "main/index.html", {
             "message": "Please sign in",
         })
-    return render(request, "users/home.html")
+    return render(request, "dash/index.html")
 
 def register(request):
     if request.user.is_authenticated:
@@ -28,7 +28,8 @@ def register(request):
                 username=username,
                 password=data.get("password"),
                 email=data.get("email"),
-                phone=data.get("phone")
+                phone=data.get("phone"),
+                code = "",
             )
 
             user.name = data["name"]
@@ -49,7 +50,7 @@ def register(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return render(request, "users/home.html")
+        return render(request, "dash/index.html")
     
     if request.method == "POST":
         data = request.POST
@@ -59,9 +60,9 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return render(request, "users/home.html")
+            return render(request, "dash/index.html")
 
-        return render(request, "users/login.html", {
+        return render(request, "main/index.html", {
             "message": "Invalid login credentials"
         })
 
@@ -73,5 +74,5 @@ def logout_user(request):
         return render(request, "main/index.html", {
             "message": "Logged out successfully"
         })
-    return render(request, "users/login.html")
+    return render(request, "main/index.html")
     

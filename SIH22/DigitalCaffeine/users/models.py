@@ -6,7 +6,7 @@ class MyUserManager(BaseUserManager):
     """
         Class for managing custom user
     """
-    def create_user(self, email, username, phone, password=None):
+    def create_user(self, email, username, phone, code, password=None):
         """ Function to create a user """
         if not email:
             raise ValueError("Users must have an email")

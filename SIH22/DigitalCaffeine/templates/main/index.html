@@ -1,17 +1,762 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infrasonic Emitter</title>
-</head>
-<body>
-    <nav>
 
-    </nav>
-    <h1>INFRASONIC EMITTER</h1>
-    <a href="{% url 'users:login' %}">Login</a>
-    <a href="{% url 'users:register' %}">Register</a>
-</body>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Xerebro</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", buttons);
+
+        function compare(s1, s2) {
+            if (s1 === s2) {
+                return true;
+            }
+            else {
+                alert("Passwords do not match");
+                return false;
+            }
+        }
+
+        function printmessage() {
+            let message = "{{ message }}";
+            if (message != "") {
+                alert("{{ message }}");
+            }
+        }
+
+        function buttons() {
+            // Printing message if any
+            printmessage();
+            
+            let login = document.getElementById("login-button");
+            let register = document.getElementById("register-button");
+            login_view = document.getElementById("login-div");
+            register_view = document.getElementById("register-div");
+            login.addEventListener("click", () => {
+                login_view.style.display = "block";
+            });
+            register.addEventListener("click", () => {
+                register_view.style.display = "block";
+            });
+
+            document.getElementById("register-process").addEventListener("click", () => {
+                if (!compare(document.getElementById("pass").value, document.getElementById("cpass").value)) {
+                    return false;
+                }
+            });
+
+            // Closing icons mechanism
+            document.getElementById("log-close").addEventListener("click", () => {
+                document.getElementById("login-div").style.display = "none";
+            });
+            document.getElementById("reg-close").addEventListener("click", () => {
+                register_view.style.display = "none";
+            });
+        }
+    </script>
+<!--
+SOFTY PINKO
+https://templatemo.com/tm-535-softy-pinko
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/templatemo-softy-pinko.css' %}">
+
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <!-- <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>   -->
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <img src="{% static 'main/images/logo.png' %}" alt="Softy Pinko"/>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="#welcome" class="active">Home</a></li>
+                            <li><a href="#work-process">How You Get Better</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#pricing-plans">Pricing Tables</a></li>
+                            <li><a id="login-button">Login</a></li>
+                            <li><a id="register-button">Register</a></li>
+                            <li><a href="#contact-us">Contact Us</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Login and Register ***** -->
+        <div class="auth-div" id="login-div">
+            <div class="auth-popup">
+                <div class="top">
+                    <h2 class="section-title">Login</h2>
+                    <img src="/static/main/images/icon-close.png" alt="close" id="log-close" class="close-icon">
+                </div>
+                <div class="login-form">
+                    <div class="contact-form">
+                        <form action="{% url 'users:login' %}" method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                <input name="username" type="text" class="form-control" id="name" placeholder="Username" required="true">
+                            </fieldset>
+                            <fieldset>
+                                <input name="password" type="password" class="form-control" id="email" placeholder="Password" required="true">
+                            </fieldset>
+                            <fieldset style="text-align: center;">
+                                <button type="submit" id="form-submit" class="main-button">LOGIN</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--***** Register *****-->
+    <div class="auth-div" id="register-div">
+        <div class="auth-popup">
+            <div class="top">
+                <h2 class="section-title">Register</h2>
+                <img src="/static/main/images/icon-close.png" alt="close" id="reg-close" class="close-icon">
+            </div>
+            <div class="login-form">
+                <div class="contact-form">
+                    <form action="{% url 'users:register' %}" method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <input name="name" type="text" class="form-control" placeholder="Full Name" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="email" type="email" class="form-control" placeholder="Email" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="username" type="text" class="form-control" placeholder="Username" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="phone" type="text" class="form-control" placeholder="Phone Number" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="password" type="password" class="form-control" placeholder="Password" required="true" id="pass">
+                        </fieldset>
+                        <fieldset>
+                            <input name="cpassword" type="password" class="form-control" placeholder="Confirm Password" required="true" id="cpass">
+                        </fieldset>
+                        <fieldset style="text-align: center;">
+                            <button type="submit" class="main-button" id="register-process">REGISTER</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Login and Register section end ***** -->
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1>Hey <strong>you!</strong><br><strong>Yes <strong>you!</strong><br>You're <strong>Focusing</strong><br>And on the right site!</strong></h1>
+                        <p></p>
+                        <a href="#features" class="main-button-slider">DISCOVER YOUR TYPE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Features Small Start ***** -->
+    <section class="section home-feature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/insomnia.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title">ADHD</h5>
+                                <p>A multi-faceted disorder that occurs among 10% of the global populace.</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/insomnia.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title">Insomnia</h5>
+                                <p>A persistent sleeping disorder that can be corrected over time.</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/featured-item-03.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title">Depression</h5>
+                                <p>A mood disorder with persistent changes in the emotions felt by the person.</p><br>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Small End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Talk. Discuss. Focus.</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>We deliver well being to you just by a conversation. ADHD isn't a disease, it's a disorder. People often tend to confuse the two. DIscuss with us on any doubts that clouds your mind. We'll find the easiest way out and help you focus.  </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Assistance at the right place and the right time!</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Our services cater to the specially abled community. We assist them with ehancing there own skills, just with a little push and conversation.   </p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/right-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini" id="work-process">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h1>Work Process</h1>
+                            <p>This should help you get acquainted with the procedures at hand.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row" id="workflow">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Getting started</strong>
+                            <span>Initiate with creating a new account. Login in with the details into the newly created account.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Navigate</strong>
+                            <span>Once you're logged in, navigate through the site to view it's multiple functionalities.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Device</strong>
+                            <span> Link your Xerebro device with the your personalized account. This allows all your information to be stored in one place.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Connectivity</strong>
+                            <span>The Connectivity status of the device is displayed on the website.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Discover</strong>
+                            <span>If the colour displayed is green or blue, you're good to go. The device is ready and working.</span>
+                        </a>
+                    </div>
+                    <!--<div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Launch</strong>
+                            <span>Godard pabst prism fam cliche.</span>
+                        </a>
+                    </div>-->
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    <!-- ***** Testimonials Start ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">User Reviews</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Comments from our valued customers</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Testimonials Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>My daughter was diagnosed with Type-2 ADHD at the age of 12. My paediatrician suggested Xerebro and it has worked wonders for her ever since.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Anton Castillo</h3>
+                                <span>Single dad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Testimonials Item End ***** -->
+                
+                <!-- ***** Testimonials Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>My doctor diagnosed me with chronic depression just a few weeks back. Rather the usual medication, he prescribed me Xerebro's multiwave headband and boy has it been a ride.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Tanu Free</h3>
+                                <span>Cashier</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Testimonials Item End ***** -->
+                
+                <!-- ***** Testimonials Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>Xerebro is a state-of-the-art device that not only monitors your brain activity but can alter your state of mind, mood and behaviour at the touch of your fingertips.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Wruce Bayne</h3>
+                                <span>CEO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Testimonials Item End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials End ***** -->
+
+    <!-- ***** Pricing Plans Start ***** -->
+    <section class="section colored" id="pricing-plans">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Pricing Plans</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Donec vulputate urna sed rutrum venenatis. Cras consequat magna quis arcu elementum, quis congue risus volutpat.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                    <div class="pricing-item">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Starter</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">14.50</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                <li class="active">60 GB space</li>
+                                <li class="active">600 GB transfer</li>
+                                <li class="active">Pro Design Panel</li>
+                                <li>15-minute support</li>
+                                <li>Unlimited Emails</li>
+                                <li>24/7 Security</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                    <div class="pricing-item active">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Premium</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">21.50</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                <li class="active">120 GB space</li>
+                                <li class="active">1200 GB transfer</li>
+                                <li class="active">Pro Design Panel</li>
+                                <li class="active">15-minute support</li>
+                                <li>Unlimited Emails</li>
+                                <li>24/7 Security</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                    <div class="pricing-item">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Advanced</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">42.00</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                <li class="active">250 GB space</li>
+                                <li class="active">5000 GB transfer</li>
+                                <li class="active">Pro Design Panel</li>
+                                <li class="active">15-minute support</li>
+                                <li class="active">Unlimited Emails</li>
+                                <li class="active">24/7 Security</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Pricing Plans End ***** -->
+
+    <!-- ***** Counter Parallax Start ***** -->
+    <section class="counter">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>126</strong>
+                            <span>Tests Run</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-top">
+                            <strong>63</strong>
+                            <span>Happy Clients</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>18</strong>
+                            <span>Patent Offers</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item">
+                            <strong>196</strong>
+                            <span>Countries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Counter Parallax End ***** -->   
+
+    <!-- ***** Blog Start ***** -->
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Products and Services</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Browse other products you might be interested in</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="blog-post-thumb">
+                        <div class="img">
+                            <img src="{% static 'main/images/blog-item-01.png' %}" alt="">
+                        </div>
+                        <div class="blog-content">
+                            <h3>
+                                <a href="#">Vivamus ac vehicula dui</a>
+                            </h3>
+                            <div class="text">
+                               Cras aliquet ligula dui, vitae fermentum velit tincidunt id. Praesent eu finibus nunc. Nulla in sagittis eros. Aliquam egestas augue.
+                            </div>
+                            <a href="#" class="main-button">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="blog-post-thumb">
+                        <div class="img">
+                            <img src="{% static 'main/images/blog-item-02.png' %}" alt="">
+                        </div>
+                        <div class="blog-content">
+                            <h3>
+                                <a href="#">Phasellus convallis augue</a>
+                            </h3>
+                            <div class="text">
+                                Aliquam commodo ornare nisl, et scelerisque nisl dignissim ac. Vestibulum finibus urna ut velit venenatis, vel ultrices sapien mattis.
+                            </div>
+                            <a href="#" class="main-button">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="blog-post-thumb">
+                        <div class="img">
+                            <img src="{% static 'main/images/blog-item-03.png' %}" alt="">
+                        </div>
+                        <div class="blog-content">
+                            <h3>
+                                <a href="#">Nam gravida purus non</a>
+                            </h3>
+                            <div class="text">
+                                Maecenas eu erat vitae dui convallis consequat vel gravida nulla. Vestibulum finibus euismod odio, ut tempus enim varius eu.
+                            </div>
+                            <a href="#" class="main-button">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Blog End ***** -->
+
+    <!-- ***** Contact Us Start ***** -->
+    <section class="section colored" id="contact-us">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Talk To Us</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Maecenas pellentesque ante faucibus lectus vulputate sollicitudin. Cras feugiat hendrerit semper.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Contact Text Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5 class="margin-bottom-30">Keep in touch</h5>
+                    <div class="contact-text">
+                        <p>110-220 Quisque diam odio, maximus ac consectetur eu, 10260
+                        <br>auctor non lorem</p>
+                        <p>You are NOT allowed to re-distribute Softy Pinko template on any template collection websites. Thank you.</p>
+                    </div>
+                </div>
+                <!-- ***** Contact Text End ***** -->
+
+                <!-- ***** Contact Form Start ***** -->
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="get">
+                          <div class="row">
+                            {% csrf_token %}
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="email" class="form-control" id="email" placeholder="E-Mail Address" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button">Send Message</button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ***** Contact Form End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us End ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2020 Softy Pinko Company - Design: TemplateMo</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'main/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'main/js/popper.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'main/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'main/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'main/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'main/js/custom.js' %}"></script>
+
+  </body>
 </html>
