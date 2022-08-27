@@ -10,8 +10,8 @@ def index(request):
 def main(request):
     return render(request, "main/data.html")
 
-def stats(request):
-    return render(request, "main/stats.html")
+def products(request):
+    return render(request, "products/index.html")
 
 def newpair(request, code=None):
     """ For pairing new device for new user """
@@ -23,7 +23,6 @@ def newpair(request, code=None):
         })
     
     if request.method == "POST":
-        print(code)
         return render(request, "users/home.html")
 
 def dash(request):

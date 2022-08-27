@@ -1,0 +1,7 @@
+#status {
+    width: 5vh;
+    height: 5vh;
+    border-radius:50%;
+    background-color: #fff;
+    box-shadow: 0 0 3vh 1.5vh #fff, 0 0 5vh 3vh #41f468, 0 0 7vh 4.5vh #00ff26;
+}
