@@ -1,0 +1,558 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Products and Services</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/templatemo-softy-pinko.css' %}">
+
+    </head>
+    
+    <body>
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <img src="" alt="Xerebro"/>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="#welcome" class="active">Home</a></li>
+                            <li><a href="#XCITE">XCITE</a></li>
+                            <li><a href="#XDL">XDL</a></li>
+                            <li><a href="#Autismo">Autismo</a></li>
+                            <!--<li><a id="login-button">Login</a></li>
+                            <li><a id="register-button">Register</a></li>
+                            <li><a href="#contact-us">Contact Us</a></li>-->
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Login and Register ***** 
+        <div class="auth-div" id="login-div">
+            <div class="auth-popup">
+                <div class="top">
+                    <h2 class="section-title">Login</h2>
+                    <img src="/static/main/images/icon-close.png" alt="close" id="log-close" class="close-icon">
+                </div>
+                <div class="login-form">
+                    <div class="contact-form">
+                        <form action="{% url 'users:login' %}" method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                <input name="username" type="text" class="form-control" id="name" placeholder="Username" required="true">
+                            </fieldset>
+                            <fieldset>
+                                <input name="password" type="password" class="form-control" id="email" placeholder="Password" required="true">
+                            </fieldset>
+                            <fieldset style="text-align: center;">
+                                <button type="submit" id="form-submit" class="main-button">LOGIN</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    <!--***** Register *****
+    <div class="auth-div" id="register-div">
+        <div class="auth-popup">
+            <div class="top">
+                <h2 class="section-title">Register</h2>
+                <img src="/static/main/images/icon-close.png" alt="close" id="reg-close" class="close-icon">
+            </div>
+            <div class="login-form">
+                <div class="contact-form">
+                    <form action="{% url 'users:register' %}" method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <input name="name" type="text" class="form-control" placeholder="Full Name" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="email" type="email" class="form-control" placeholder="Email" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="username" type="text" class="form-control" placeholder="Username" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="phone" type="text" class="form-control" placeholder="Phone Number" required="true">
+                        </fieldset>
+                        <fieldset>
+                            <input name="password" type="password" class="form-control" placeholder="Password" required="true" id="pass">
+                        </fieldset>
+                        <fieldset>
+                            <input name="cpassword" type="password" class="form-control" placeholder="Confirm Password" required="true" id="cpass">
+                        </fieldset>
+                        <fieldset style="text-align: center;">
+                            <button type="submit" class="main-button" id="register-process">REGISTER</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- ***** Login and Register section end ***** -->
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1><strong>Products and Services</strong></h1>
+                        <p></p>
+                        <a href="#features" class="main-button-slider">EXPLORE MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Features Small Start ***** -->
+    <section class="section home-feature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div id="XCITE-bg"  class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/X.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title"></h5>
+                                <p></p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                            <div id="XDL-bg" class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/X D L.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title"></h5>
+                                <p></p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'main/images/UTIS.png' %}" alt=""></i>
+                                </div>
+                                <h5 class="features-title"></h5>
+                                <p>
+                                </p><br>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Small End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="XCITE">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">XCITE (Xerebro deCentralized InfoTech Enterprise)</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>A decentralized databank that provides access to millions of research repositories holding consented Xerebro datasets. Each and every client's mental activity is uploaded to an open server where doctors, researchers and people alike can access. It exists purely for research and reference purposes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <!--<section class="section padding-bottom-100" id="XCITE">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Assistance at the right place and the right time!</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>The services cater to the specially-abled community. We assist them with enhancing their skills, with a little push and conversation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/right-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>-->
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h1>Key features</h1>
+                            <p> </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row" id="workflow">
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/decentralized.png' %}" alt=""></i>
+                            <strong><strong>Decentralized</strong></strong>
+                            <span>XCITE is a free-to-use non-profit infotech platform which can be accessed by anyone anywhere.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/reliable.png' %}" alt=""></i>
+                            <strong><strong>Reliable</strong></strong>
+                            <span>All data(sets) on the website are proofread and cross-verified before being pushed to the database.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/secure.png' %}" alt=""></i>
+                            <strong><strong>Secure</strong></strong>
+                            <span>Data on XCITE's server has a 4-level layer of encryption, eliminating any room for manipulation, e-vandalism and gaslighting users.</span>
+                        </a>
+                    </div>
+                    <!--<div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Launch</strong>
+                            <span>Godard pabst prism fam cliche.</span>
+                        </a>
+                    </div>-->
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="XDL">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">XDL (Xerebro Digital Library)</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>An online website for Xerebro users, that hosts paid DLC for a thousand mental disorders, aka digital therapy software (DTS). For a duration of your choice, choose your plan and subscribe to download and use any of your DLCs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h1>Getting started</h1>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row" id="workflow">
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>What is it?</strong></strong>
+                            <span>XDL is an online platform for purchasing digital therapy software at affordable prices.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>What do you require?</strong></strong>
+                            <span>A registered Xerebro device is all you need!</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>How it works?</strong></strong>
+                            <span>Register on <a hrefXDL.com and enter the hashkey allotted to your device and voila!... DLC at your fingertips.</span>
+                        </a>
+                    </div>
+                    <!--<div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Launch</strong>
+                            <span>Godard pabst prism fam cliche.</span>
+                        </a>
+                    </div>-->
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="Autismo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'main/images/left-image.png' %}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Autismo</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Immerse yourself into Kara's world, a jawdropping, mindblowing storyline that will resonate with the darkest, most deepest nooks of your hearts.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h1>What does the game pack?</h1>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row" id="workflow">
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>Walkthrough</strong></strong>
+                            <span>The game is easily accessible over various XR/VR platforms such as Windows, MacOS, Linux, Xbox and Playstation.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>Documentation</strong></strong>
+                            <span>The game has an autosave feature and inbuilt virtual transcranial sensors that measure the variation of braimn activity levels with and compares them with realtime motions of the player's character.</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong><strong>Overview</strong></strong>
+                            <span>Autismo isn't limited to the normally sparse controller interface, rather a wide range of neural, haptic and gyro interfaces, thus giving the user a full measure of the body's span of interaction.</span>
+                        </a>
+                    </div>
+                    <!--<div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <i><img src="{% static 'main/images/work-process-item-01.png' %}" alt=""></i>
+                            <strong>Launch</strong>
+                            <span>Godard pabst prism fam cliche.</span>
+                        </a>
+                    </div>-->
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+
+    <!-- ***** Testimonials Start ***** -
+    <section class="section" id="testimonials">
+        <div class="container">
+             ***** Section Title Start ***** 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">User Reviews</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Comments from our valued customers</p>
+                    </div>
+                </div>
+            </div>
+            ***** Section Title End ***** 
+
+            <div class="row">
+                ***** Testimonials Item Start ***** 
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>My daughter was diagnosed with Type-2 ADHD at the age of 12. My paediatrician suggested Xerebro and it has worked wonders for her ever since.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Anton Castillo</h3>
+                                <span>Single dad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ***** Testimonials Item End ***** 
+                
+                ***** Testimonials Item Start ***** 
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>My doctor diagnosed me with chronic depression just a few weeks back. Rather the usual medication, he prescribed me Xerebro's multiwave headband and boy has it been a ride.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Tanu Free</h3>
+                                <span>Cashier</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 ***** Testimonials Item End ***** 
+                
+                 ***** Testimonials Item Start ***** 
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-item">
+                        <div class="team-content">
+                            <i><img src="{% static 'main/images/testimonial-icon.png' %}" alt=""></i>
+                            <p>Xerebro is a state-of-the-art device that not only monitors your brain activity but can alter your state of mind, mood and behaviour at the touch of your fingertips.</p>
+                            <div class="user-image">
+                                <img src="http://placehold.it/60x60" alt="">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="user-name">Wruce Bayne</h3>
+                                <span>CEO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 ***** Testimonials Item End ***** 
+            </div>
+        </div>
+    </section>-->
+  
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2020 Softy Pinko Company - Design: TemplateMo</p>
+                </div>
+            </div>-->
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'main/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'main/js/popper.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'main/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'main/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'main/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'main/js/custom.js' %}"></script>
+
+  </body>
+</html>

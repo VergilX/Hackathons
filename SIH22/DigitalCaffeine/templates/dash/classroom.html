@@ -27,9 +27,6 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        // Custom variables
-        var present = false;
-
         import {getDatabase, ref, get, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
 
         const db = getDatabase();
@@ -60,11 +57,9 @@
             get(child(dbref, "Devices/1001")).then((snapshot) => {
                 if (snapshot.exists()) {
                     if (snapshot.val().STATUS) {
-                        present = true;
+                        return snapshot.val().STATUS;
                     }
-                    else {
-                        present = false;
-                    }
+                    console.log("Not inside if");
                 }
                 else {
                     alert("Data not found!");
@@ -73,15 +68,13 @@
             .catch((error) => {
                 alert("Error"+error);
             });
-
-            return present;
+            
         };
 
         // Checking status of light in website
         function check_status() {
-            if (document.getElementById("status").style.boxShadow === "none") {
+            if (document.getElementById("status").style.boxShadow == "none") {
                 return false;
-                console.log("check_status if")
             }
 
             return true;
@@ -177,15 +170,15 @@
             setInterval(() => {
                 // Code
                 deep_scan();
-                if (!check_status_database()) {
-                    console.log("check_status: " + check_status());
-                    if (check_status()) {
+                let dstatus = true;
+                if (dstatus) {
+                    if (!check_status()) {
                         // Turning off light
                         change_status(false);
                     }
                 }
                 else {
-                    if (!check_status()) {
+                    if (check_status()) {
                         // Turning on light
                         change_status(true);
                     }
@@ -232,8 +225,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-chalkboard-teacher"></i>
+                    <span>Classroom</span></a>
             </li>
 
             <!-- Divider -->
@@ -241,7 +234,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -249,13 +242,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Edit Classroom</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="#">Buttons</a>
-                        <a class="collapse-item" href="#">Cards</a>
+                        <h6 class="collapse-header"></h6>
+                        <i class="fas fa-fw fa-cog"></i>
+                        <a class="collapse-item" href="#">Add Student</a>
+                        <a class="collapse-item" href="#">Remove Student</a>
                     </div>
                 </div>
             </li>
@@ -284,7 +278,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -292,7 +286,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Assignments</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -311,15 +305,15 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <i class="fas fa-fw fa-check"></i>
+                    <span>To Do</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:classroom' %}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Calendar</span></a>
             </li>
 
             <!-- Divider -->
@@ -511,14 +505,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user.name }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{% url 'main:profile' %}">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -548,7 +542,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Welcome {{ request.user.name }}!</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                                 <span id="status"></span>
                     </div>
 
@@ -562,11 +556,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Hours Used(24 Hours)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 hr</div>
+                                                Rahul Sharma</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Admn No</div>
                                         </div>                                       
                                         <div class="col-auto">
-                                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -580,11 +574,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Frequent Brain State</div>
+                                                Aditya Anand</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">Alpha</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-brain fa-2x text-gray-300"></i>
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -597,7 +591,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Desired Brain State
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rishav Raj
                                             </div>
                                             <!--<div class="row no-gutters align-items-center">-->
                                                 <div class="col-auto">
@@ -613,7 +607,7 @@
                                             </div>-->
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -627,11 +621,359 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Last Brain State</div>
+                                                Inayat Khan</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">Beta</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Amrita Pritam</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 hr</div>
+                                        </div>                                       
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Ashish Singh</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Alpha</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Simra Sharma
+                                            </div>
+                                            <!--<div class="row no-gutters align-items-center">-->
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Delta</div>
+                                                </div>
+                                                <!--<div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                               Rohan Raushan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Beta</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Joel Peter</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 hr</div>
+                                        </div>                                       
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                              Aayat Arooz  </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Alpha</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Ritesh Singh
+                                            </div>
+                                            <!--<div class="row no-gutters align-items-center">-->
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Delta</div>
+                                                </div>
+                                                <!--<div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Saurav Kumar</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Beta</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Neha Singh</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 hr</div>
+                                        </div>                                       
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Rishi Mathur</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Alpha</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Ishwar Kapoor
+                                            </div>
+                                            <!--<div class="row no-gutters align-items-center">-->
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Delta</div>
+                                                </div>
+                                                <!--<div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Sneha Singh</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Beta</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Patrick John</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 hr</div>
+                                        </div>                                       
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Saba Naqvi</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Alpha</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kriti Khanna
+                                            </div>
+                                            <!--<div class="row no-gutters align-items-center">-->
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Delta</div>
+                                                </div>
+                                                <!--<div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                             Neha Thomas</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Beta</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -641,12 +983,12 @@
 
                     <!-- Content Row -->
 
-                    <div class="row">
+                    <!--<div class="row">
 
-                        <!-- Area Chart -->
+                        Area Chart 
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                 Card Header - Dropdown 
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Real Time Overview</h6>
@@ -665,7 +1007,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
+                                 Card Body 
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="chart"></canvas>
@@ -674,10 +1016,10 @@
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
+                        Pie Chart 
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                 Card Header - Dropdown 
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Behavioural Mode Stats</h6>
@@ -696,7 +1038,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
+                                 Card Body 
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
@@ -715,16 +1057,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <!--<div class="row">-->
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <!--<div class="col-lg-6 mb-4">-->
 
                             <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
+                            <!--<div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Brain States(Frequency Bands):Duration</h6>
                                 </div>
@@ -760,10 +1102,10 @@
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <!-- Color System -->
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-primary text-white shadow">
                                         <div class="card-body">
@@ -803,7 +1145,7 @@
                                             <div class="text-white-50 small">1.6 hours</div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <!--<div class="col-lg-6 mb-4">
                                     <div class="card bg-secondary text-white shadow">
                                         <div class="card-body">
@@ -827,50 +1169,50 @@
                                             <div class="text-white-50 small">#5a5c69</div>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
 
-                        </div>
+                        </div>-->
 
-                        <div class="col-lg-6 mb-4">
+                        <!--<div class="col-lg-6 mb-4">-->
 
                             <!-- Illustrations -->
-                            <div class="card shadow mb-4">
+                            <!--<div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-center">
+                                    <div class="text-center">-->
                                         <!--<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">-->
-                                    </div>
-                                    <p><!--Add some quality, svg illustrations to your project courtesy of <a
+                                            src="img/undraw_posting_photo.svg" alt="...">
+                                    </div>-->
+                                    <!--<p>Add some quality, svg illustrations to your project courtesy of <a
                                             target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
                                         constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!--></p>
+                                        completely free and without attribution!</p>-->
                                     <!--<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>-->
+                                        unDraw &rarr;</a>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <!-- Approach -->
-                            <div class="card shadow mb-4">
+                            <!--<div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p><!--SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                    <p>-SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
                                         CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.--></p>
-                                    <p class="mb-0"><!--Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.--></p>
+                                        custom components and custom utility classes.</p>
+                                    <p class="mb-0">Before working with this theme, you should become familiar with the
+                                        Bootstrap framework, especially the utility classes.</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                </div>
+                </div>-->
                 <!-- /.container-fluid -->
 
             </div>

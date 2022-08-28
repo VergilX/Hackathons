@@ -44,6 +44,24 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
+#XCITE-bg {
+  background-image: url("/static/main/images/X.png");
+}
+
+#XDL-bg {
+  background-image: url("/static/main/images/X D L.png")
+}
+
+.icon {
+  background-color: none;
+}
+
+.icon > i > img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .clearfix:after {
   content: ".";
   display: block;
@@ -54,7 +72,7 @@ figure, header, nav, section, article, aside, footer, figcaption {
 }
 
 #workflow {
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .close-icon {

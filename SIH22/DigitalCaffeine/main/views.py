@@ -11,7 +11,7 @@ def main(request):
     return render(request, "main/data.html")
 
 def products(request):
-    return render(request, "products/index.html")
+    return render(request, "main/products.html")
 
 def newpair(request, code=None):
     """ For pairing new device for new user """
@@ -30,4 +30,14 @@ def dash(request):
 
     if request.user.is_authenticated:
         return render(request, "dash/index.html")
+    return HttpResponseRedirect(reverse("users:home"))
+
+def classroom(request):
+    return render(request, "dash/classroom.html")
+
+def profile(request):
+    """ Displaying profile of user """
+
+    if request.user.is_authenticated:
+        return render(request, "dash/profile.html")
     return HttpResponseRedirect(reverse("users:home"))
