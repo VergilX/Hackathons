@@ -32,6 +32,12 @@ def register(request):
                 code = "",
             )
 
+            # setting if teacher
+            if (data.get("teacher") == 'yes'):
+                user.is_teacher = True
+
+            print("User teacher status: ", user.is_teacher)
+
             user.name = data["name"]
             user.phone = data["phone"]
             
@@ -41,12 +47,12 @@ def register(request):
             return HttpResponseRedirect(reverse("users:home"))
 
         else:
-            return render(request, "users/register.html", {
+            return render(request, "main/index.html", {
                 "message": "Username is already taken",
                 # add things for already showing details typed
             })
 
-    return render(request, "users/register.html")
+    return render(request, "main/index.html")
 
 def login_user(request):
     if request.user.is_authenticated:
@@ -75,4 +81,3 @@ def logout_user(request):
             "message": "Logged out successfully"
         })
     return render(request, "main/index.html")
-    

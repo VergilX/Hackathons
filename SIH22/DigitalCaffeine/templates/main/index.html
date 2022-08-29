@@ -97,13 +97,13 @@ https://templatemo.com/tm-535-softy-pinko
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="#" class="logo">
-                            <img src="" alt="Xerebro"/>
+                            <img src="/static/main/images/wavy logo.svg" height=50 width=50 alt="Xerebro"/>
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="#welcome" class="active">Home</a></li>
-                            <li><a href="#work-process">How You Get Better</a></li>
+                            <li><a href="#work-process">How It Works</a></li>
                             <li><a href="#testimonials">User Reviews</a></li>
                             <li><a href="#pricing-plans">InfoCare</a></li>
                             <li><a id="login-button">Login</a></li>
@@ -175,6 +175,11 @@ https://templatemo.com/tm-535-softy-pinko
                         <fieldset>
                             <input name="cpassword" type="password" class="form-control" placeholder="Confirm Password" required="true" id="cpass">
                         </fieldset>
+                        <label for="teacher">Are you a teacher? </label>
+                        <select name="teacher" id="teacher">
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
                         <fieldset style="text-align: center;">
                             <button type="submit" class="main-button" id="register-process">REGISTER</button>
                         </fieldset>
@@ -213,9 +218,9 @@ https://templatemo.com/tm-535-softy-pinko
                         <!-- ***** Features Small Item Start ***** -->
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
                             <div class="features-small-item">
-                                <div class="icon">
-                                    <i><img src="{% static 'main/images/insomnia.png' %}" alt=""></i>
-                                </div>
+                                <!--<div class="icon">-->
+                                    <i><img src="{% static 'main/images/adhd.jpg' %}" width="160" height="90" alt=""></i>
+                                <!--</div>-->
                                 <h5 class="features-title">ADHD</h5>
                                 <p>A multi-faceted disorder that occurs among 10% of the global populace.</p>
                             </div>
@@ -225,9 +230,9 @@ https://templatemo.com/tm-535-softy-pinko
                         <!-- ***** Features Small Item Start ***** -->
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
                             <div class="features-small-item">
-                                <div class="icon">
-                                    <i><img src="{% static 'main/images/insomnia.png' %}" alt=""></i>
-                                </div>
+                                <!--div class="icon">-->
+                                    <i><img src="{% static 'main/images/insomnia.jpg' %}" width="160" height="90" alt=""></i>
+                                <!--</div>-->
                                 <h5 class="features-title">Insomnia</h5>
                                 <p>A persistent sleeping disorder that can be corrected over time.</p>
                             </div>
@@ -237,9 +242,9 @@ https://templatemo.com/tm-535-softy-pinko
                         <!-- ***** Features Small Item Start ***** -->
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
                             <div class="features-small-item">
-                                <div class="icon">
-                                    <i><img src="{% static 'main/images/featured-item-03.png' %}" alt=""></i>
-                                </div>
+                                <!--<div class="icon">-->
+                                    <i><img src="{% static 'main/images/depression.jpg' %}" width="160" height="90" alt=""></i>
+                                <!--</div>-->
                                 <h5 class="features-title">Depression</h5>
                                 <p>A mood disorder with persistent changes in the emotions felt by the person.
                                 </p><br>
@@ -393,7 +398,7 @@ https://templatemo.com/tm-535-softy-pinko
                                 <img src="http://placehold.it/60x60" alt="">
                             </div>
                             <div class="team-info">
-                                <h3 class="user-name">Anton Castillo</h3>
+                                <h3 class="user-name">Antony Peter</h3>
                                 <span>Single Dad</span>
                             </div>
                         </div>
@@ -411,7 +416,7 @@ https://templatemo.com/tm-535-softy-pinko
                                 <img src="http://placehold.it/60x60" alt="">
                             </div>
                             <div class="team-info">
-                                <h3 class="user-name">Tanu Free</h3>
+                                <h3 class="user-name">Tanvi Raj</h3>
                                 <span>Cashier</span>
                             </div>
                         </div>
@@ -429,7 +434,7 @@ https://templatemo.com/tm-535-softy-pinko
                                 <img src="http://placehold.it/60x60" alt="">
                             </div>
                             <div class="team-info">
-                                <h3 class="user-name">Wruce Bayne</h3>
+                                <h3 class="user-name">Rishav Khanna</h3>
                                 <span>CEO</span>
                             </div>
                         </div>
@@ -469,7 +474,7 @@ https://templatemo.com/tm-535-softy-pinko
                         <div class="pricing-body">
                             <div class="price-wrapper">
                                 <!--<span class="currency">Dr.</span>-->
-                                <span class="price">Paediatrician</span>
+                                <span class="price">Paediatrics</span>
                                 <!--<span class="period">PAEDIATRICIAN</span>-->
                             </div>
                             <ul class="list">
@@ -482,23 +487,23 @@ https://templatemo.com/tm-535-softy-pinko
                             </ul>
                         </div>
                         <div class="pricing-footer">
-                            <a href="#" class="main-button">Focus More</a>
+                            <a href="#" class="main-button">Contact</a>
                         </div>
                     </div>
                 </div>
                 <!-- ***** Pricing Item End ***** -->
 
-                <!-- ***** Pricing Item Start ***** -->
-                <div class="col-lg-3 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                    <div class="pricing-item active">
+                 <!-- ***** Pricing Item Start ***** -->
+                 <div class="col-lg-3 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                    <div class="pricing-item">
                         <!--<div class="pricing-header">
-                            <h3 class="pricing-title">Neurology</h3>
+                            <h3 class="pricing-title">Psychiatry</h3>
                         </div>-->
                         <div class="pricing-body">
                             <div class="price-wrapper">
                                 <!--<span class="currency">Dr.</span>-->
-                                <span class="price">Psychiatrist</span>
-                                <!--<span class="period">MBBS,MS</span>-->
+                                <span class="price">Neurology</span>
+                                <!--<span class="period">PSYCHOLOGIST</span>-->
                             </div>
                             <ul class="list">
                                 <a href="#"><li class="active">Dr. Jack Rose</li></a>
@@ -510,7 +515,7 @@ https://templatemo.com/tm-535-softy-pinko
                             </ul>
                         </div>
                         <div class="pricing-footer">
-                            <a href="#" class="main-button">Focus More</a>
+                            <a href="#" class="main-button">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -525,7 +530,7 @@ https://templatemo.com/tm-535-softy-pinko
                         <div class="pricing-body">
                             <div class="price-wrapper">
                                 <!--<span class="currency">Dr.</span>-->
-                                <span class="price">Psychologist</span>
+                                <span class="price">Psychiatry</span>
                                 <!--<span class="period">PSYCHOLOGIST</span>-->
                             </div>
                             <ul class="list">
@@ -538,7 +543,7 @@ https://templatemo.com/tm-535-softy-pinko
                             </ul>
                         </div>
                         <div class="pricing-footer">
-                            <a href="#" class="main-button">Focus More</a>
+                            <a href="#" class="main-button">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -566,7 +571,7 @@ https://templatemo.com/tm-535-softy-pinko
                             </ul>
                         </div>
                         <div class="pricing-footer">
-                            <a href="#" class="main-button">Know More</a>
+                            <a href="#" class="main-button">Contact</a>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ from users.models import *
 
 # Register your models here.
 class UserAdmin(UserAdmin):
-    list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff')
+    list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff', 'is_teacher')
     search_fields = ('email', 'username')
     readonly_fields = ('id', 'date_joined', 'last_login')
 

@@ -6,7 +6,7 @@ class MyUserManager(BaseUserManager):
     """
         Class for managing custom user
     """
-    def create_user(self, email, username, phone, code, password=None):
+    def create_user(self, email, username, phone=0, code="", password=None):
         """ Function to create a user """
         if not email:
             raise ValueError("Users must have an email")
@@ -49,11 +49,13 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    teacher = models.ForeignKey('self', null=True, related_name="students", on_delete=models.PROTECT)
 
     hide_email = models.BooleanField(default=True)
 
     # custom fields
     phone = models.IntegerField(blank=True, null=True)
+    is_teacher = models.BooleanField(default=False)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", ]

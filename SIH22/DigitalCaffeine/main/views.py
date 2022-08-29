@@ -7,9 +7,6 @@ from django.http import HttpResponseRedirect
 def index(request):
     return render(request, "main/index.html")
 
-def main(request):
-    return render(request, "main/data.html")
-
 def products(request):
     return render(request, "main/products.html")
 
