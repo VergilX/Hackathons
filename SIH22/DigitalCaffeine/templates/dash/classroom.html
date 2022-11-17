@@ -2,39 +2,55 @@
 
 {% block body %}
     <script>
+        let count = 1560;
+        let states = document.getElementsByClassName("state_value");
+
+        function timer(element) {
+            count--;
+            element.innerHTML = `${parseInt(count / 60)}:${count % 60}`;
+            console.log("Count: "+count);
+            if (count === 0) {
+                change_state("Off", states);
+                clearInterval();
+            }
+        }
+
+        function change_state(newstate, states) {
+            for (let i = 0; i < 19; i++) {
+                states.item(i).innerHTML = `Current State: ${newstate}`
+            };
+        };
+
         document.addEventListener("DOMContentLoaded", () => {
-            let gamma = document.getElementById("gamma")
-            let beta = document.getElementById("beta")
-            let alpha = document.getElementById("alpha")
-            let theta = document.getElementById("theta")
-            let delta = document.getElementById("delta")
-            let states = document.getElementsByClassName("state_value");
+            let gamma = document.getElementById("gamma");
+            let beta = document.getElementById("beta");
+            let alpha = document.getElementById("alpha");
+            let theta = document.getElementById("theta");
+            let delta = document.getElementById("delta");
+            let time = document.getElementById("timer");
+
+            document.getElementById("start").addEventListener("click", () => {
+                setInterval(() => {
+                    timer(time);
+                }, 1000);
+
+            });
 
             gamma.addEventListener("click", () => {
-                for (let i = 0; i < 19; i++) {
-                    states.item(i).innerHTML = "Current State: Gamma"
-                }
+                change_state("Gamma", states);
             });
 
             beta.addEventListener("click", () => {
-                for (let i = 0; i < 19; i++) {
-                    states.item(i).innerHTML = "Current State: Beta"
-                }
+                change_state("Beta", states);
             });
             alpha.addEventListener("click", () => {
-                for (let i = 0; i < 19; i++) {
-                    states.item(i).innerHTML = "Current State: Alpha"
-                }
+                change_state("Alpha", states);
             });
             theta.addEventListener("click", () => {
-                for (let i = 0; i < 19; i++) {
-                    states.item(i).innerHTML = "Current State: Theta"
-                }
+                change_state("Theta", states);
             });
             delta.addEventListener("click", () => {
-                for (let i = 0; i < 19; i++) {
-                    states.item(i).innerHTML = "Current State: Delta"
-                }
+                change_state("Delta", states);
             });
         });
     </script>
@@ -45,6 +61,13 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Classroom</h1>
                                 <span id="status"></span>
+                    </div>
+
+                    <div>
+                        <button id="start" value="START">START</button>
+                        <div>
+                            Time left: <span id="timer"></span>
+                        </div>
                     </div>
 
                     <!-- Content Row -->
@@ -119,26 +142,6 @@
                                         <div class="col-auto">
                                             <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Abhishek Biju</div>
-                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
-                                                Admn No.: 1009<br>
-                                                <span class="state_value">Current State: Alpha</span>
-                                            </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                     </div>
                                 </div>
                             </div>
