@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
-body {
-  background-color: #0E0E0E;
-}
 
 #nav-item-active {
   border-bottom: #FFFFFF solid 2px;
@@ -18,69 +15,6 @@ body {
 
 .navigation-bar {
   background-color: #272727;
-}
-
-.desc {
-  display: flex;
-  height: 70vh;
-  width: 100%;
-}
-
-.picture-div {
-  position: relative;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.picture-div img {
-  width: 300px;
-  height: 400px;
-  border-radius: 5px;
-}
-
-.description {
-  position: relative;
-  width: 50%;
-}
-
-.description-content {
-  position: absolute;
-  display: inline-block;
-  font-family: "Fuzzy Bubbles";
-  color: #FFFFFF;
-  top: 30%;
-  padding: 0 1rem;
-}
-
-.sliding-thingy {
-  display: flex;
-  position: relative;
-  align-items: center;
-  overflow: hidden;
-}
-.sliding-thingy .sliding-images {
-  display: flex;
-  position: relative;
-}
-.sliding-thingy img {
-  width: 90vw;
-  height: 80vh;
-}
-.sliding-thingy .sliding-image {
-  position: absolute;
-}
-.sliding-thingy .arrows {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  width: 95vw;
-  margin: 0 2vw;
-}
-.sliding-thingy .arrow-svg {
-  width: 5vw;
-  height: 5vw;
-  cursor: pointer;
 }
 
 .footer {

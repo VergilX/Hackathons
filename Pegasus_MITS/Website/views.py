@@ -10,10 +10,22 @@ def index(request):
 
 def home(request):
     if not request.user.is_authenticated:
-        return render(request, "website/index.html", {
+        return render(request, "index.html", {
             "message": "Please log in first",
         })
 
-    return render(request, "website/home.html", {
+    return render(request, "home.html", {
         'message', "Logged in successfully!"
     })
+
+def login(request):
+    if request.user.is_authenticated:
+        return render(request, "home.html")
+
+    return render(request, "login.html")
+
+def register(request):
+    if request.user.is_authenticated:
+        return render(request, "home.html")
+    
+    return render(request, "register.html")

@@ -71,3 +71,24 @@
 .display-if {
 	display: inline-flex;
 }
+
+.login-hero {
+    display: flex;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_box {
+    padding: 2%;
+    border: rgb(111, 111, 111) solid 1px;
+    border-radius: 4px;
+}
+
+.login_box > form {
+    padding: 3%;
+}
+
+.login_box > form > .form-group > * {
+    padding: 3%;
+}

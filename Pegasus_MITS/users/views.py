@@ -39,15 +39,15 @@ def register(request):
 
         # if not authenticated
         else:
-            return render(request, "website/index.html", {
+            return render(request, "index.html", {
                 "message": "Username is already taken",
             })
 
-    return render(request, "website/index.html")
+    return render(request, "index.html")
 
 def login_user(request):
     if request.user.is_authenticated:
-        return render(request, 'website/index.html', {
+        return render(request, 'index.html', {
             "message": "Already logged in"
         })
 
@@ -63,17 +63,17 @@ def login_user(request):
 
             return HttpResponseRedirect(reverse("website:home"))
 
-        return render(request, "website/index.html", {
+        return render(request, "index.html", {
             "message": "Invalid login credentials"
         })
 
-    return render(request, "website/index.html")
+    return render(request, "index.html")
 
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
-        return render(request, "website/index.html", {
+        return render(request, "index.html", {
             "message": "Logged out successfully"
         })
 
-    return render(request, "website/index.html")
+    return render(request, "index.html")
