@@ -1,0 +1,25 @@
+Website - 
+
+
+Features
+    - Main page
+        - Description about services
+        - Team members
+    - Login (Customer)
+        - Search for products in database using LIKE
+        - Will display list of results
+        - Select the result and you will get the details of the shop along with a link for google map location
+    - Shop owner (Shop owner)
+        - Has a home page that allows you to update the products available
+        - Can show time open and closed along with description of the shop and link for google map can be inserted
+        - Can add link to shop website (if available)
+    -  
+
+Future Scope:
+    - Rating system for shops
+    - Ratings from users which determine overall rating
+    - Pictures of products
+    - Google map API integration
+    - Can add personal aesthetics to different shops like YouTube does for different channels
+    - Checking how many views the shop has
+    - Personalization
