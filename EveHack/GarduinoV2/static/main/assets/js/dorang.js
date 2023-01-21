@@ -60,3 +60,23 @@ $(document).ready(function(){
         } 
     });
 }); 
+
+function get_api_data() {
+    let response = fetch("http://127.0.0.1:8000/home/api/1")
+    response.then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.querySelector("#temp").innerHTML = `TEMP: ${data["temp"]}&#8451`;
+            document.querySelector("#humidity").innerHTML = `HUMIDITY: ${data["humidity"]}gm<sup>-3</sup>`;
+            document.querySelector("#fertilizer").innerHTML = `FERTILIZER: ${data["fertilizer_level"]}%`;
+            document.querySelector("#intensity").innerHTML = `INTENSITY: ${data["led_intensity"]}nits`;
+            // callback(data);
+        })
+        .catch(error => {
+            console.log("Error: "+error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setInterval(get_api_data, 10000);
+})
