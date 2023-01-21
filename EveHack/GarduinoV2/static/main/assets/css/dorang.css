@@ -11827,6 +11827,7 @@ body.dark-theme {
 .centrize {
   display: inline-block;
   max-width: 70%;
+  text-align: center;
   margin: auto;
 }
 
