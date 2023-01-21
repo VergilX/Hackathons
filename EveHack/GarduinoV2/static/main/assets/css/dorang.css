@@ -11185,7 +11185,7 @@ a:hover {
   overflow: hidden;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -11780,4 +11780,63 @@ body.light-theme .contact-section .footer .links a {
 
 body.dark-theme {
   background: #212529;
+}
+
+.side-columns {
+  width: 15%;
+  bottom: 0;
+  height: 80%;
+}
+
+#left-column {
+  position: absolute;
+  left: 0;
+}
+
+#right-column {
+  position: absolute;
+  right: 0;
+}
+
+#bottom-column {
+  width: 100%;
+  height: 27%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-stat {
+  margin: 0 5%;
+  display: flex;
+  align-items: center;
+  margin: 2% 4%;
+	background: radial-gradient(black 50%, transparent 51%),
+		conic-gradient(transparent 0deg 220deg, gainsboro 220deg 360deg),
+		conic-gradient(orange 0deg, yellow 90deg, lightgreen 180deg, green);
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	/* margin: 0; */
+	/* For animations... */
+	/* transition: all 500ms ease-in; */
+	/* will-change: transform; */
+}
+
+.centrize {
+  display: inline-block;
+  max-width: 70%;
+  margin: auto;
+}
+
+.centrize > * {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  color: white;
+}
+
+.stat-img {
+  width: 100%;
+  text-align: center;
 }

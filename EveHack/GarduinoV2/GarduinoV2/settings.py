@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "c961-178-248-114-82.in.ngrok.io", # Edit this to match your ngrok url
+    '127.0.0.1', # localhost
 ]
 
 
