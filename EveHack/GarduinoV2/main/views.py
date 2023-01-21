@@ -52,7 +52,7 @@ def modify_singleplant(request, pk):
             serializer.save()
             return JsonResponse(serializer.data)
         
-        return JsonResponse(serializer.erros, status=400)
+        return JsonResponse(serializer.errors, status=400)
 
     elif request.method == "DELETE":
         plant.delete()
