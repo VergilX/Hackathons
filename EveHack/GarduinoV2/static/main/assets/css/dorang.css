@@ -11790,10 +11790,11 @@ body.dark-theme {
 
 .stats {
   height: 20%;
-  padding: 1rem;
+  margin: 20%;
   border: 2px white solid;
   border-radius: 10px;
-  margin: 2rem;
+  padding: 1rem;
+  font-size: 15px;
   color: white;
 }
 
@@ -11816,14 +11817,40 @@ body.dark-theme {
   justify-content: space-between;
 }
 
+#temp-dial {
+	background: radial-gradient(black 50%, transparent 51%),
+    conic-gradient(gainsboro 0deg 360deg),
+		conic-gradient(orange 0deg, yellow 140deg, red 240deg);
+}
+
+#humidity-dial {
+	background: radial-gradient(black 50%, transparent 51%),
+    conic-gradient(gainsboro 0deg 360deg),
+		conic-gradient(white 0deg, lightblue 90deg, blue 240deg);
+}
+
+#fertilizer-dial {
+	background: radial-gradient(black 50%, transparent 51%),
+    conic-gradient(gainsboro 0deg 360deg),
+		conic-gradient(white 0deg, lightgreen 90deg, green 240deg);
+}
+
+#intensity-dial {
+	background: radial-gradient(black 50%, transparent 51%),
+    conic-gradient(gainsboro 0deg 360deg),
+		conic-gradient(white 0deg, yellow 90deg, orange 180deg, red 340deg);
+}
+
+
 .bottom-stat {
   margin: 0 5%;
   display: flex;
   align-items: center;
   margin: 2% 4%;
-	background: radial-gradient(black 50%, transparent 51%),
-		conic-gradient(transparent 0deg 220deg, gainsboro 220deg 360deg),
-		conic-gradient(orange 0deg, yellow 90deg, lightgreen 180deg, green);
+	/* background: radial-gradient(black 50%, transparent 51%), */
+    /* conic-gradient(transparent 0deg 220deg, gainsboro 220deg 360deg), */
+		/* conic-gradient(orange 0deg, yellow 90deg, lightgreen 180deg, green) */
+    /* conic-gradient(); */
 	border-radius: 50%;
 	width: 150px;
 	height: 150px;
@@ -11848,4 +11875,16 @@ body.dark-theme {
 .stat-img {
   width: 100%;
   text-align: center;
+}
+
+@media only screen and (max-width: 1100px) {
+  #left-column {
+    display: none;
+  }
+
+  .bottom-stat {
+    height: 120px;
+    width: 120px;
+  }
+
 }

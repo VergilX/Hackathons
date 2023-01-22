@@ -66,13 +66,27 @@ function get_api_data() {
     response.then(response => response.json())
         .then(data => {
             console.log(data);
-            console.log(data["next_spray"]);
+            // Calculating percentages on dials
+            let temp = (data["temp"]/50)*360;
+            let humidity = (data["humidity"]/100)*360;
+            let fertilizer = (data["fertilizer_level"]/100)*360;
+            let intensity = (data["lcd_intensity"]/100)*360;
+            console.log(temp)
 
             // Assigning API data to webpage
             document.querySelector("#temp").innerHTML = `TEMP: ${data["temp"]}&#8451`;
+            document.querySelector("#temp-dial").style.background = `radial-gradient(black 50%, transparent 51%), conic-gradient(transparent 0deg ${temp}deg, gainsboro ${temp}deg 360deg),conic-gradient(orange 0deg, yellow 140deg, red 240deg)`;
+
             document.querySelector("#humidity").innerHTML = `HUMIDITY: ${data["humidity"]}%`;
+            document.querySelector("#humidity-dial").style.background = `radial-gradient(black 50%, transparent 51%), conic-gradient(transparent 0deg ${humidity}deg, gainsboro ${humidity}deg 360deg),conic-gradient(white 0deg, lightblue 90deg, blue 240deg)`;
+
             document.querySelector("#fertilizer").innerHTML = `FERTILIZER: ${data["fertilizer_level"]}%`;
-            document.querySelector("#intensity").innerHTML = `INTENSITY: ${data["led_intensity"]}nits`;
+            document.querySelector("#fertilizer-dial").style.background = `radial-gradient(black 50%, transparent 51%), conic-gradient(transparent 0deg ${fertilizer}deg, gainsboro ${fertilizer}deg 360deg),conic-gradient(white 0deg, lightgreen 90deg, green 240deg)`;
+
+            document.querySelector("#intensity").innerHTML = `INTENSITY: ${data["led_intensity"]}%`;
+            document.querySelector("#fertilizer-dial").style.background = `radial-gradient(black 50%, transparent 51%), conic-gradient(transparent 0deg ${intensity}deg, gainsboro ${intensity}deg 360deg),conic-gradient(white 0deg, lightgreen 90deg, green 240deg)`;
+            
+            // Changing text
             document.querySelector("#text-plant-type").innerHTML = `Plant type: ${data["name"]}`;
             document.querySelector("#text-next-spray-time").innerHTML = `Next Spray Time: ${data["next_spray"]}`;
             document.querySelector("#text-sundown-time").innerHTML = `Sundown Time: ${data["time_to_sundown"]}`;

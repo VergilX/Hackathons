@@ -81,9 +81,11 @@
             </div>
         </div>
         <div class="columns" id="right-column">
-            <div class="stats"></div>
-            <div class="stats"></div>
-            <div class="stats"></div>
+            <div class="stats">
+                <div class="stats-text" id="text-plant-status">
+                    Status: Healthy
+                </div>
+            </div>
         </div>
         <div class="modalBox-body">
             <iframe width="100%" height="450px" class="border-0" 
@@ -91,43 +93,45 @@
             </iframe>
         </div>          
         <div id="bottom-column">
-            <div class="bottom-stat">
+            <div class="bottom-stat" id="temp-dial">
                 <div class="centrize">
                     <div class="img">
                         <img src="{% static 'main/assets/imgs/thermometer.png' %}" alt="icon">
                     </div>
                     <div id="temp">
-                        TEMP: Nil
+                        <div class="disappearing-text">TEMP: </div>Nil
                     </div>
                 </div>
             </div>
-            <div class="bottom-stat">
+            <div class="bottom-stat" id="humidity-dial">
                 <div class="centrize">
                     <div class="img">
                         <img src="{% static 'main/assets/imgs/humidity.png' %}" alt="icon">
                     </div>
                     <div id="humidity">
-                        HUMIDITY: Nil
+                        <div class="disappearing-text">HUMIDITY: </div>Nil
                     </div>
                 </div>
             </div>
-            <div class="bottom-stat">
+            <div class="bottom-stat" id="fertilizer-dial">
                 <div class="centrize">
                     <div class="img">
                         <img src="{% static 'main/assets/imgs/fertilizer.png' %}" alt="icon">
                     </div>
                     <div id="fertilizer">
-                        FERTILIZER: Nil
+                        <div class="erase">FERTILIZER: </div>Nil
                     </div>
                 </div>
             </div>
-            <div class="bottom-stat">
+            <div class="bottom-stat" id="intensity-dial">
                 <div class="centrize">
                     <div class="img">
                         <img src="{% static 'main/assets/imgs/bulb.png' %}" alt="icon">
                     </div>
                     <div id="intensity">
-                        INTENSITY: Nil
+                        <div class="disappearing-text" style="display: none;">
+                            INTENSITY: </div>
+                        Nil
                     </div>
                 </div>
             </div>
