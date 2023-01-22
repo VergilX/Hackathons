@@ -120,7 +120,7 @@ void loop() {
   Serial.println((String)"intensity="+(dark/255)*100);
   // Serial.println((String)"pump="+pump_flag);
   */
-  delay(3000);
+  delay(1000);
   /*Serial.println(ldr_flag);
   delay(1000);
   Serial.println(pump_flag);

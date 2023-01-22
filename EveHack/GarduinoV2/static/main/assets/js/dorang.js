@@ -70,7 +70,7 @@ function get_api_data() {
 
             // Assigning API data to webpage
             document.querySelector("#temp").innerHTML = `TEMP: ${data["temp"]}&#8451`;
-            document.querySelector("#humidity").innerHTML = `HUMIDITY: ${data["humidity"]}gm<sup>-3</sup>`;
+            document.querySelector("#humidity").innerHTML = `HUMIDITY: ${data["humidity"]}%`;
             document.querySelector("#fertilizer").innerHTML = `FERTILIZER: ${data["fertilizer_level"]}%`;
             document.querySelector("#intensity").innerHTML = `INTENSITY: ${data["led_intensity"]}nits`;
             document.querySelector("#text-plant-type").innerHTML = `Plant type: ${data["name"]}`;
